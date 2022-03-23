@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true"
+    android:shape="oval">
+<!--dither속성을 통해 비트맵이 화면과 동일한 픽셀 구성을 가지고 있지 비트맵 디더링을 사용하거나 사용하지 않울 수 있다. -->
+    <size
+        android:height="30dp"
+        android:width="30dp"/>
+    <solid android:color="#FF666666"/>
+
+</shape>
