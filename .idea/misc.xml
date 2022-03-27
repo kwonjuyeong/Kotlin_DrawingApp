@@ -9,6 +9,8 @@
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/backgroud_drawing_view_layout.xml" value="0.3475" />
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.295" />
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/ic_baseline_brush_24.xml" value="0.295" />
+        <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.295" />
+        <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/ic_baseline_undo_24.xml" value="0.295" />
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1955" />
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/pallet_normal.xml" value="0.1955" />
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/drawable/pallet_pressed.xml" value="0.1955" />
@@ -18,6 +20,7 @@
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/layout/dialog_brush_size.xml" value="0.22" />
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/layout/permission.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/layout/pick_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/kjy1h/AndroidStudioProjects/KotlinDrawingApp/app/src/main/res/xml/path.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

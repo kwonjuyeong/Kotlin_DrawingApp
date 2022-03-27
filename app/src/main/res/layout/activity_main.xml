@@ -166,6 +166,7 @@
             android:background="@color/white"
             android:src="@drawable/ic_baseline_add_photo_alternate_24"
             android:scaleType="fitXY" />
+
         <ImageButton
             android:id= "@+id/ib_brush"
             android:layout_width="50dp"
@@ -174,5 +175,24 @@
             android:background="@color/white"
             android:src="@drawable/ic_baseline_brush_24"
             android:scaleType="fitXY" />
+
+        <ImageButton
+            android:id= "@+id/undo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_undo_24"
+            android:scaleType="fitXY" />
+
+        <ImageButton
+            android:id= "@+id/save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_save_24"
+            android:scaleType="fitXY" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
