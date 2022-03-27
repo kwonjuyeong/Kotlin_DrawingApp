@@ -1,21 +1,52 @@
 package com.example.kotlindrawingapp
 
 
+import android.Manifest
 import android.app.Dialog
 import android.graphics.Color
+import android.media.Image
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 
 class MainActivity : AppCompatActivity() {
 
+
+
     private var drawingView: DrawingView ?= null
     private var mImageButtonCurrentPaint: ImageButton ?= null
+
+    val requestPermission: ActivityResultLauncher<Array<String>> =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
+            permissions ->
+            permissions.entries.forEach{
+                val permissionName = it.key
+                val isGranted = it.value
+
+                if(isGranted){
+                    Toast.makeText(this@MainActivity, "Permission granted now you can read the storage files.", Toast.LENGTH_LONG).show()
+                }else{
+                    if(permissionName==Manifest.permission.READ_EXTERNAL_STORAGE){
+                        Toast.makeText(this@MainActivity, "Oops you just denied the permissions", Toast.LENGTH_LONG).show()
+
+                    }
+
+                }
+
+            }
+        }
+
 
 //    private var mPickColorButton:Button? = null
 //    private var mDefaultColor = 0
@@ -24,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         drawingView = findViewById(R.id.drawing_view)
         drawingView ?.setSizeForBrush(20.toFloat())
 
@@ -44,13 +76,16 @@ class MainActivity : AppCompatActivity() {
             showBrushSizeChooserDialog()
         }
 
-//        val colorPicker : ImageButton = findViewById(R.id.btn_pick_color)
-//        colorPicker.setOnClickListener {
-//          showColorPickerDialog()
-//
-//        }
+        val ibGallery : ImageButton = findViewById(R.id.gallery)
+        ibGallery.setOnClickListener{
+            requestStoragePermission()
+        }
+        //colorpicker
+        /*val colorPicker : ImageButton = findViewById(R.id.btn_pick_color)
+        colorPicker.setOnClickListener {
+          showColorPickerDialog()
 
-
+        }*/
     }
 
     //브러쉬 크기 설정해주는 함수
@@ -108,5 +143,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun requestStoragePermission(){
+
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE))
+        {
+           showRationaleDialog("Drawing App", "This Drawing App needs to Access your External Storage")
+        }else{
+            requestPermission.launch(arrayOf(
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ))
+        }
+    }
+
+
+
+    //권한체크 다이어로그
+    private fun showRationaleDialog(
+        title: String,
+        message: String,
+    )
+    {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+        builder.create().show()
+    }
 
 }
