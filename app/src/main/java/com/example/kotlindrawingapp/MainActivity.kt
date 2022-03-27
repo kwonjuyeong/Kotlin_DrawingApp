@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.media.Image
+import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -215,18 +216,35 @@ class MainActivity : AppCompatActivity() {
         builder.create().show()
     }
 
+    //Progressbar 보이기
     private fun showProgressDialog() {
         customProgressDialog = Dialog(this@MainActivity)
         customProgressDialog?.setContentView(R.layout.dialog_custom_progress)
         customProgressDialog?.show()
     }
-
+    //Progressbar 사라지기
     private fun cancelProgressDialog() {
         if (customProgressDialog != null) {
             customProgressDialog?.dismiss()
             customProgressDialog = null
         }
     }
+
+    //이미지 공유하기
+    private fun shareImage(result:String){
+
+        MediaScannerConnection.scanFile(
+            this@MainActivity, arrayOf(result), null
+        ) { path, uri ->
+
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
+            shareIntent.type = "image/png"
+            startActivity(Intent.createChooser(shareIntent, "Share"))
+        }
+    }
+
 
     private fun getBitmapFromView(view: View): Bitmap {
 
@@ -279,6 +297,7 @@ class MainActivity : AppCompatActivity() {
                                 "File saved successfully :$result",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            shareImage(result)
                         } else {
                             Toast.makeText(
                                 this@MainActivity,
