@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
     private var drawingView: DrawingView ?= null
     private var mImageButtonCurrentPaint: ImageButton ?= null
 
+    var customProgressDialog: Dialog? = null
+
+
     val openGalleryLauncher:ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         result ->
         if(result.resultCode == RESULT_OK && result.data!=null){
@@ -105,6 +108,8 @@ class MainActivity : AppCompatActivity() {
 
         ibSave.setOnClickListener{
             if (isReadStorageAllowed()){
+
+                showProgressDialog()
                 //launch a coroutine block
                 lifecycleScope.launch{
                     //reference the frame layout
@@ -210,6 +215,19 @@ class MainActivity : AppCompatActivity() {
         builder.create().show()
     }
 
+    private fun showProgressDialog() {
+        customProgressDialog = Dialog(this@MainActivity)
+        customProgressDialog?.setContentView(R.layout.dialog_custom_progress)
+        customProgressDialog?.show()
+    }
+
+    private fun cancelProgressDialog() {
+        if (customProgressDialog != null) {
+            customProgressDialog?.dismiss()
+            customProgressDialog = null
+        }
+    }
+
     private fun getBitmapFromView(view: View): Bitmap {
 
         //Define a bitmap with the same size as the view.
@@ -254,6 +272,7 @@ class MainActivity : AppCompatActivity() {
                     result = f.absolutePath // The file absolute path is return as a result.
                     //We switch from io to ui thread to show a toast
                     runOnUiThread {
+                        cancelProgressDialog()
                         if (!result.isEmpty()) {
                             Toast.makeText(
                                 this@MainActivity,
