@@ -19,6 +19,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs){
     private var canvas: Canvas?=null
     private val mPaths = ArrayList<CustomPath>()
 
+
     init{
         setUpDrawing()
     }
@@ -96,10 +97,16 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs){
 
     }
 
+    fun setColor(newColor: String){
 
+        color = Color.parseColor(newColor)
+        mDrawPaint!!.color
+
+    }
 
 
     internal inner class CustomPath(var color:Int, var brushThickness: Float): Path(){
+
 
     }
 
